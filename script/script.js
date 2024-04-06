@@ -195,3 +195,68 @@ function createCommentElement(name, comment, image, timestamp) {
   `;
   return newComment;
 }
+
+const sample = [
+  {
+    name: "Yair Rodríguez",
+    text: "¡Realmente es bueno! Llevo unas semanas tomando D-Norm. No me he sentido así en mucho tiempo. Mis niveles de azúcar volvieron a la normalidad al día siguiente de tomarlo por primera vez, ¡qué pasará cuando haya tomado todo el curso!",
+    image: "",
+    timestamp: "2024-04-06T13:40:10.333Z",
+  },
+  {
+    name: "Elizabeth Vargas",
+    text: "Esta es la verdad sobre lo que hay detrás de las compañías farmacéuticas. Todo lo que quieren de nosotros es dinero. Recomiendan suplementos que son ineficaces y sólo dan falsas esperanzas. No recetan suplementos que realmente ayudan, simplemente no los tienen en las farmacias. Me preocupo por mi país. Nadie se preocupa por los diabéticos. Es triste que no pueda vivir en Europa. Gracias por compartir la información.",
+    image: "",
+    timestamp: "2024-04-06T13:40:10.333Z",
+  },
+  {
+    name: "Maribel Peña",
+    text: "Soy diabética desde hace mucho tiempo (más de 16 años), he probado de todo para normalizar mi azúcar, quitar el adormecimiento de las manos y la sed excesiva. Bebí varias infusiones de hierbas, seguí dietas estrictas, compré todos los productos que se ofrecían en la farmacia, pero el resultado fue insignificante. Sólo vi un efecto real con D-Norm. No me he sentido tan bien en años. Mi nivel de azúcar en sangre ha dejado de aumentar, puedo olvidarme de las restricciones dietéticas estrictas (¡por fin!), incluso he dejado de llevar una botella de agua de 1,5 litros a todos lados porque ahora no quiero beberla todo el tiempo. Sólo quiero dar las gracias a los creadores de D-Norm, ¡han revolucionado la lucha contra diabetes de tipo 2!",
+    image: "",
+    timestamp: "2024-04-06T13:40:10.333Z",
+  },
+  {
+    name: "Carmela Espinoza",
+    text: "Usé D-Norm hace dos años. Lo pedí en la página web oficial. Desde hace 2 años me siento como una persona sana. De todas las cosas que he probado (soy diabética desde hace mucho tiempo), D-Norm es el mejor suplemento. ¡No lo dudes! ¡Es tu salvador de las enfermedades!",
+    image: "",
+    timestamp: "2024-04-06T13:40:10.333Z",
+  },
+  {
+    name: "Mario Pacheco",
+    text: "Pedí D-Norm. Vivo en Oaxaca y me prometieron la entrega en una semana. Estoy deseando que llegue.",
+    image: "",
+    timestamp: "2024-04-06T13:40:10.333Z",
+  },
+];
+
+document.addEventListener("DOMContentLoaded", function () {
+  autoResizeTextarea();
+
+  const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
+  const commentsList = document.getElementById("commentsList");
+
+  storedComments.forEach(function (comment) {
+    const newComment = createCommentElement(
+      comment.name,
+      comment.text,
+      comment.image,
+      new Date(comment.timestamp)
+    );
+    commentsList.appendChild(newComment);
+  });
+
+  let currentIndex = 0;
+  setInterval(function () {
+    if (currentIndex < sample.length) {
+      const newCommentData = sample[currentIndex];
+      const newComment = createCommentElement(
+        newCommentData.name,
+        newCommentData.text,
+        newCommentData.image,
+        new Date()
+      );
+      commentsList.appendChild(newComment);
+      currentIndex++;
+    }
+  }, 60 * 1000); // 60 секунд * 1000 миллисекунд
+});
