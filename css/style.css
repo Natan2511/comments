@@ -118,12 +118,7 @@ button {
 
 .download-avatar{
         position: absolute;
-        cursor: pointer;
         left: 25px;
-            &:hover {
-                transform: scale(1.1);
-                transition: all 200ms ease;
-            }
 }
 
 .avatar{
@@ -170,4 +165,9 @@ button {
     border-top: 1px dashed #000;
     height: 18px;
     margin-top: 20px;
+}
+
+.date{
+    margin-top: 10px;
+    color: blue;
 }

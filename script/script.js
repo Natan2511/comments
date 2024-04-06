@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const newComment = createCommentElement(
       comment.name,
       comment.text,
-      comment.image
+      comment.image,
+      new Date(comment.timestamp) // передаем время публикации как объект Date
     );
     commentsList.appendChild(newComment);
   });
@@ -78,7 +79,8 @@ document.querySelector(".form").addEventListener("submit", function (event) {
 
   if (comment) {
     const commentsList = document.getElementById("commentsList");
-    const newComment = createCommentElement(name, comment, image);
+    const timestamp = new Date(); // сохраняем текущее время публикации
+    const newComment = createCommentElement(name, comment, image, timestamp);
     commentsList.appendChild(newComment);
 
     nameInput.value = "";
@@ -86,7 +88,12 @@ document.querySelector(".form").addEventListener("submit", function (event) {
     imageDisplay.innerHTML = "";
 
     const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
-    const newStoredComment = { name: name, text: comment, image: image };
+    const newStoredComment = {
+      name: name,
+      text: comment,
+      image: image,
+      timestamp: timestamp,
+    };
     storedComments.push(newStoredComment);
     localStorage.setItem("comments", JSON.stringify(storedComments));
   } else {
@@ -94,21 +101,26 @@ document.querySelector(".form").addEventListener("submit", function (event) {
   }
 });
 
-function createCommentElement(name, comment, image) {
+function createCommentElement(name, comment, image, timestamp) {
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+  const dateString = timestamp.toLocaleString("en-US", options);
+
   const newComment = document.createElement("li");
   newComment.classList = "list";
   newComment.innerHTML = `
-  <label class="avatar" for="fileInputAvatar">
-              <img
-                src="./images/user.png"
-                alt="Upload Image"
-                width="40"
-                height="40"
-              />
-            </label>
+    <label class="avatar" for="fileInputAvatar">
+      <img src="./images/user.png" alt="Upload Image" width="40" height="40"/>
+    </label>
     <span class="name">${name}</span>
     <p class="text">${comment}</p>
     ${image ? `<div class="text-img">${image}</div>` : ""}
+    <p class="date">Опубликовано: ${dateString}</p>
     <div class="line"></div>
   `;
   return newComment;
