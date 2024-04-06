@@ -1,0 +1,173 @@
+html {
+    box-sizing: border-box;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    overflow-x: hidden;
+    word-wrap: normal;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+
+    color: black;
+
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+button {
+    max-width: 600px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: blue;
+    color: white;
+    border: 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    &:active{
+        transform: scale(1.1);
+        transition: all 200ms ease;
+    }
+}
+
+.container {
+    margin: 50px;
+}
+
+.h2{
+    color: blue;
+}
+
+.form{
+    padding-left: 100px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    input{
+        max-width: 300px;
+        padding: 10px;
+    }
+
+    textarea{
+        max-width: 600px;
+        border-color: gray;
+        padding: 10px;
+        box-sizing: border-box;
+        resize: none;
+        overflow-y: hidden;
+        min-height: 50px;
+        padding-right: 50px;
+    }
+}
+
+.comments{
+    margin-top: 50px;
+}
+
+.download {
+    position: absolute;
+    top: 55px;
+    left: 25px;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.1);
+        transition: all 200ms ease;
+    }
+}
+
+.download-avatar{
+        position: absolute;
+        cursor: pointer;
+        left: 25px;
+            &:hover {
+                transform: scale(1.1);
+                transition: all 200ms ease;
+            }
+}
+
+.avatar{
+    position: absolute;
+    left: 20px;
+}
+
+#fileDisplay {
+    position: absolute;
+    top: 10px;
+    right: 60px;
+   
+}
+.name{
+    font-weight: 600;
+    color: blue;
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+
+.text{
+    color: black;
+    font-size: 17px;
+    line-height: 25px;
+}
+.list{
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+}
+#commentsList{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.text-img{
+    img{
+        margin-top: 10px;
+    }
+}
+
+.line {
+    border-top: 1px dashed #000;
+    height: 18px;
+    margin-top: 20px;
+}

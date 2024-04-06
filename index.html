@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>comments</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section class="comments-wrapper">
+        <div>
+          <h2 class="h2">comments</h2>
+          <div class="line"></div>
+          <form class="form" action="">
+            <label class="download-avatar" for="fileInputAvatar">
+              <img
+                src="/images/user.png"
+                alt="Upload Image"
+                width="40"
+                height="40"
+              />
+            </label>
+            <input required placeholder="Name" type="text" />
+            <textarea
+              required
+              placeholder="Comment"
+              name="comment"
+              id="comment"
+              rows="2"
+              data-autoresize
+            ></textarea>
+            <div id="imageDisplay"></div>
+            <input
+              id="fileInput"
+              type="file"
+              accept="image/*"
+              style="display: none"
+            />
+            <label class="download" for="fileInput">
+              <img
+                src="/images/download.png"
+                alt="Upload Image"
+                width="40"
+                height="40"
+              />
+            </label>
+            <button type="submit">submit comment</button>
+          </form>
+        </div>
+
+        <div class="comments">
+          <ul id="commentsList"></ul>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="/script/script.js"></script>
+  </body>
+</html>
