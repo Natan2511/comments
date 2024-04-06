@@ -188,5 +188,5 @@ document.addEventListener("DOMContentLoaded", function () {
       commentsList.appendChild(newComment);
       currentIndex++;
     }
-  }, 60 * 1000); // 60 секунд * 1000 миллисекунд
+  }, 10 * 1000); // 60 секунд * 1000 миллисекунд
 });
