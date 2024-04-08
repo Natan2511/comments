@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
   const commentsList = document.getElementById("commentsList");
 
-  // Добавляем сохраненные комментарии на страницу
+  storedComments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
   storedComments.forEach(function (comment) {
     const newComment = createCommentElement(
       comment.name,
@@ -54,8 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
           );
 
           storedComments.unshift({
-            // Сохраняем новый комментарий в начало массива
-            id: Date.now().toString(), // Генерируем уникальный id
+            id: Date.now().toString(),
             name: newCommentData.name,
             text: newCommentData.text,
             image: newCommentData.image,
@@ -93,8 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       storedComments.unshift({
-        // Сохраняем новый комментарий в начало массива
-        id: Date.now().toString(), // Генерируем уникальный id
+        id: Date.now().toString(),
         name: newCommentData.name,
         text: newCommentData.text,
         image: newCommentData.image,
@@ -173,7 +172,7 @@ document.querySelector(".form").addEventListener("submit", function (event) {
     const commentsList = document.getElementById("commentsList");
     const timestamp = new Date();
     const newComment = createCommentElement(name, comment, image, timestamp);
-    commentsList.insertBefore(newComment, commentsList.firstChild); // Вставляем новый комментарий перед первым элементом в списке
+    commentsList.insertBefore(newComment, commentsList.firstChild);
 
     nameInput.value = "";
     commentInput.value = "";
@@ -186,7 +185,7 @@ document.querySelector(".form").addEventListener("submit", function (event) {
       image: image,
       timestamp: timestamp,
     };
-    storedComments.unshift(newStoredComment); // Добавляем новый комментарий в начало массива
+    storedComments.unshift(newStoredComment);
     localStorage.setItem("comments", JSON.stringify(storedComments));
   } else {
     alert("Please enter a comment.");
@@ -211,21 +210,19 @@ function createCommentElement(name, comment, image, timestamp) {
     <span class="name">${name}</span>
     <p class="text">${comment}</p>
     ${image ? `<div class="text-img">${image}</div>` : ""}
-    <p class="date">Published: ${dateString}</p>
+    <p class="date">Published: ${new Date().toLocaleString()}</p>
     <div class="line"></div>
   `;
   return newComment;
 }
 
-const test = [
+const sample = [
   {
     name: "Yair Rodríguez",
     text: "¡Realmente es bueno! Llevo unas semanas tomando D-Norm. No me he sentido así en mucho tiempo. Mis niveles de azúcar volvieron a la normalidad al día siguiente de tomarlo por primera vez, ¡qué pasará cuando haya tomado todo el curso!",
     image: "",
     timestamp: "2024-04-06T13:40:10.333Z",
   },
-];
-const sample = [
   {
     name: "Elizabeth Vargas",
     text: "Esta es la verdad sobre lo que hay detrás de las compañías farmacéuticas. Todo lo que quieren de nosotros es dinero. Recomiendan suplementos que son ineficaces y sólo dan falsas esperanzas. No recetan suplementos que realmente ayudan, simplemente no los tienen en las farmacias. Me preocupo por mi país. Nadie se preocupa por los diabéticos. Es triste que no pueda vivir en Europa. Gracias por compartir la información.",
